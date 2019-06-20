@@ -23,7 +23,7 @@ public class GameServer {
     }
     
     public void start() {
-    	service = new GameService(4,100);
+    	service = new GameService(1,100);
     	loger = GameLog.getLogWriter();
     	try {
             ss = new ServerSocket(8888);

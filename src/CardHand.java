@@ -142,23 +142,6 @@ public class CardHand implements Comparable<CardHand>{
 	}
 
 	// get card hand win rate.
-	public double getWinExpectation() {
-		if (cardsType >= CardHand.HAND_TYPE_VALUE_PAR) 
-			return 1.01;
-		else if (cardsType == CardHand.HAND_TYPE_VALUE_HIC && this.poker3.getPointValue() <= Poker.POINTS_VALUES.get("J"))
-			return -0.01;
-		else if (cardsType == CardHand.HAND_TYPE_VALUE_HIC && this.poker3.getPointValue() == Poker.POINTS_VALUES.get("A"))
-			return 1.01;
-		else {
-			int pkv = this.poker1.getPointValue() + this.poker2.getPointValue() + this.poker3.getPointValue();
-			if (this.poker3.getPointValue() == Poker.POINTS_VALUES.get("K"))
-				pkv += 15;
-			
-			return (double)pkv/51.0;
-		}
-	}
-	
-	// get card hand win rate.
 	public double getChanceofWinning() {
 		if (cardsType == CardHand.HAND_TYPE_VALUE_PAR) {
 			if (this.poker2.getPointValue() == Poker.POINTS_VALUES.get("A"))

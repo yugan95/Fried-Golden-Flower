@@ -10,9 +10,8 @@ public class GameClientX extends GameClient{
     }
 
     @Override
-    public void processScore(String playerID, GameScore score) {
+    public void processScore(GameScore score) {
     	List<PlayCard> players = score.getPlayerList();
-    	System.out.println(playerID);
     	System.out.println("\nDEALER    " + score.getDealerCards().toString());
     	for (PlayCard p : players) {
     		String result = p.getAnteScore() > 0 ? " W": " L";
@@ -44,7 +43,7 @@ public class GameClientX extends GameClient{
     
     @Override
     public int getAnteBet() {
-    	return 3;
+    	return 1;
 //		return (int)(1+Math.random()*6);
     }
     

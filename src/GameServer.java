@@ -16,15 +16,13 @@ public class GameServer {
     private List<Client> clients = new ArrayList<Client>();
     Thread tCmd = new Thread(new CmdThread());
 	private GameService service;
-    private GameLog loger;
-	
+    
     public static void main(String[] args) {
         new GameServer().start();
     }
     
     public void start() {
-    	service = new GameService(1,100);
-    	loger = GameLog.getLogWriter();
+    	service = new GameService(6,10000);
     	try {
             ss = new ServerSocket(8888);
             started = true;
@@ -51,7 +49,6 @@ public class GameServer {
             e.printStackTrace();
         } finally {
         	stop();
-        	loger.close();
         	System.out.println("Server stoped.");
         }
     }
@@ -68,13 +65,11 @@ public class GameServer {
     // send message to client.
     private void sendMessage(String sType) {
     	
-		if (sType.equals("TOTAL")) {
-			loger.log(service.balanceMessage());
-		}
-		
+		String balance = sType.equals("TOTAL") ? service.balanceMessage() : "";
+
     	for (Client client: clients) {
 			if (sType.equals("READY")) {
-	    		client.send("READY\t" + client.getName());
+	    		client.send("READY\t");
 			}
 			else if (sType.equals("CARDS")) {
 				client.send("CARDS\t" + service.getCards(client.getName()));
@@ -83,7 +78,7 @@ public class GameServer {
 				client.send("SCROE\t" + service.getScore(client.getName()));
 			}
 			else if (sType.equals("TOTAL")) {
-				client.send("TOTAL\t" + service.balanceMessage());
+				client.send("TOTAL\t" + balance);
 			}
 		}
     }
@@ -236,16 +231,11 @@ public class GameServer {
                         else if (talk.equals("list")) {
                         	service.scoreList();
                         }
-                        else if (talk.equals("state")) {
-                        	service.playerState();
-                        }
                         else if (talk.equals("restart")) {
                         	System.out.println("Restart game......");
                         	service.restartGame();
                         	if (service.playersReady()) {
                     			if (service.hasNextGame()) {
-                        			loger.close();
-                        			loger = GameLog.getLogWriter();
                         			service.newGame();
                         			sendMessage("READY");
                     			}

@@ -110,7 +110,8 @@ public class PlayCard {
 	@Override
 	public String toString() {
 		String followup = this.followup ? "T" : "-";
-		return this.playerID + "  " + cardhand + " " + this.anteBets + " " + this.pairplusBets + " " + followup;
+		return this.playerID + "  " + CardHand.HAND_TYPES.get(cardhand.getCardsType()) + " [" + cardhand.getPoker3() + "," + cardhand.getPoker2() + ","
+			+ cardhand.getPoker1() + "]" + " " + this.anteBets + " " + this.pairplusBets + " " + followup;
 	}
 	
 }

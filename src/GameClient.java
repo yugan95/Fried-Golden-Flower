@@ -11,7 +11,6 @@ public class GameClient {
     private static final int SERVER_PORT = 8888;
     private String playername = "";
     private String serverip = "";
-    private String playerID = "";
     
     Socket socket = null;
     DataOutputStream dos = null;
@@ -68,17 +67,13 @@ public class GameClient {
     	return 0;
     }
     
-    public String getPlayerID() {
-    	return this.playerID;
-    }
-    
     //prepare follow up
     public boolean getFollowup(CardHand cards) {
     	return false;
     }
     
     // process score.
-    public void processScore(String playerID, GameScore score) {
+    public void processScore(GameScore score) {
 
     }
 
@@ -115,7 +110,6 @@ public class GameClient {
     	
     	if (cmd.equals("READY")) {
         	System.out.println(talk);
-        	this.playerID = talk.substring(6);
     		sendMessage("BETS \t" + Betting());
     	}
     	else if (cmd.equals("CARDS")) {
@@ -127,7 +121,7 @@ public class GameClient {
     	}
     	else if (cmd.equals("TOTAL")) {
     		GameScore score = new GameScore(talk.substring(6)); 
-    		processScore(this.playerID,score);
+    		processScore(score);
     	}
     	else {
     		System.out.println(talk);

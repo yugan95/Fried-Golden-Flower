@@ -1,14 +1,12 @@
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class GameClientW extends GameClient{
+public class GameClientWH extends GameClient{
     public static void main(String[] args) {
-        new GameClientW().launch();
+        new GameClientWH().launch();
     }
 
-    public GameClientW() {
-    	register("WMH","127.0.0.1");
+    public GameClientWH() {
+    	register("WMH2","127.0.0.1");
     }
 
 
@@ -42,7 +40,7 @@ public class GameClientW extends GameClient{
     
     @Override
     public int getPairPlusBet() {
-    	return 0;
+    	return 1;
 //		return Math.random() > 0.4 ? 1 : 0 ;
     }
 

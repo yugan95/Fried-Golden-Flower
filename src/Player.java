@@ -19,9 +19,7 @@ public class Player {
 	private String playerID;
 	private boolean logon;
 	private int score;
-	private int scorepp;
 	private int count;
-	private CardTypeRate ctr;
 	private List<String> gameLogs = new ArrayList<String>();
 	
 	public static String FreePlayID() {
@@ -53,10 +51,6 @@ public class Player {
 		this.playerName = playerName;
 	}
 	
-	public CardTypeRate getCardTypeRate() {
-		return this.ctr;
-	}
-	
 	public String getPlayerID() {
 		return playerID;
 	}
@@ -71,14 +65,6 @@ public class Player {
 	
 	public void setScore(int score) {
 		this.score = score;
-	}
-
-	public int getScorepp() {
-		return scorepp;
-	}
-	
-	public void setScorepp(int score) {
-		this.scorepp = score;
 	}
 
 	public int getCount() {
@@ -100,8 +86,6 @@ public class Player {
 	public Player(String playerID) {
 		this.score = 0;
 		this.count = 0;
-		this.scorepp = 0;
 		this.playerID = playerID;
-		this.ctr = new CardTypeRate();
 	}
 }

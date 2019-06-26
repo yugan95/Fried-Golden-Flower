@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collections;
 
-
 public class GameService {
 	public List<Poker> cards;	// Game Cards
 	public List<CardGamePlayer> players;	//Players
@@ -12,8 +11,7 @@ public class GameService {
 	private int round;	// rounds
 	private int maxPlayerNums;
 	private int maxRound;
-	
-	
+
 	public static void main(String[] args) {
 		int playerNum = 5;
 		GameService service = new GameService(playerNum,50);
@@ -38,7 +36,6 @@ public class GameService {
 		this.maxRound = maxRound;
 		this.playerNums = 0;
 		this.round = 0;
-
 		System.out.println("=======Three Cards Game, " + this.maxPlayerNums + " Player(s).=======");
 
 		cards = new ArrayList<Poker>();
@@ -79,30 +76,16 @@ public class GameService {
 	}
 	
 	// is ready to play
-	public synchronized boolean playersReady() {
+	public boolean playersReady() {
 		if (players.size() == maxPlayerNums)
 			return true;
 		else
 			return false;
 	}
 	
-	// transfer player's score to message.
-	public void playerState() {
-		System.out.println("==========Player States:==========");
-		for (CardGamePlayer player : players) {
-			String ready = (player.isReady()) ? "T" : "F";
-			String check = (player.isCheck()) ? "T" : "F";
-			System.out.println(String.format("%s%12s%3s%3s", player.getPlayerID(),Player.PLAYERS.get(player.getPlayerID()).getPlayerName(),ready,check));
-		}
-	}
-
 	// restart game
 	public void restartGame() {
 		this.round = 0;
-		for (CardGamePlayer player : players) {
-			Player.PLAYERS.get(player.getPlayerID()).setScore(0);
-			Player.PLAYERS.get(player.getPlayerID()).setCount(0);
-		}
 	}
 	
 	// player logout
@@ -120,28 +103,23 @@ public class GameService {
 	}
 
 	// player betting
-	public synchronized boolean playerBetting(String playerID, int ante, int pairplus) {
+	public boolean playerBetting(String playerID, int ante, int pairplus) {
 		boolean allReady = true;
 		
 		for (CardGamePlayer player : players) {
-			try {
-				Thread.sleep(50);
-				if (playerID.equals(player.getPlayerID())) {
-					player.bet(ante, pairplus);
-				}
-				else
-					// check all player bet.
-					allReady = allReady && player.isReady();
-			} catch (Exception e) {
-				e.printStackTrace();
+			if (playerID.equals(player.getPlayerID())) {
+				player.bet(ante, pairplus);
 			}
+			else
+				// check all player bet.
+				allReady = allReady && player.isReady();
 		}
 		
 		return allReady;
 	}
 	
 	// player follow up
-	public synchronized boolean playerFollowup(String playerID, boolean follow) {
+	public boolean playerFollowup(String playerID, boolean follow) {
 		boolean allCheck = true;
 		for (CardGamePlayer player : players) {
 			if (playerID.equals(player.getPlayerID())) {
@@ -237,7 +215,7 @@ public class GameService {
 
 	// determine card game.
 	public void determine() {
-		System.out.println("\n" + "============Rounds (" + this.round + ") Balance==========");
+		System.out.println("\n" + "============Roundsgaga (" + this.round + ") Balance==========");
 		System.out.println("DEALER    " + dealer);
 		
 		int score1, score2; 
@@ -334,7 +312,7 @@ public class GameService {
 			String playerID = "PLAYER" + pn;
 			int currentScore = Player.PLAYERS.get(playerID).getScore();
 			int currentCount = Player.PLAYERS.get(playerID).getCount();
-			System.out.println(playerID + String.format("%12s", Player.PLAYERS.get(playerID).getPlayerName())+ String.format("%4d%7d", currentCount,currentScore));
+			System.out.println(playerID + String.format("%12s", Player.PLAYERS.get(playerID).getPlayerName())+ String.format("%4d", currentCount) + String.format("%7d",currentScore));
 		}
 		System.out.println(""); 
 	}

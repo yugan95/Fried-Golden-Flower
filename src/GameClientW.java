@@ -26,8 +26,8 @@ public class GameClientW extends GameClient{
 
     @Override
     public boolean getFollowup(CardHand cards) {
-        int poker3 = Poker.POINTS_VALUES.get(cards.getPoker3().getPoint());
-        int poker2 = Poker.POINTS_VALUES.get(cards.getPoker2().getPoint());
+        int poker3 = cards.getPoker3().getPointValue();
+        int poker2 = cards.getPoker2().getPointValue();
 
         if(cards.getCardsType()==CardHand.HAND_TYPE_VALUE_HIC
                 && (poker3<12 || (poker3==12 && poker2<6))){

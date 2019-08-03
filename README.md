@@ -13,5 +13,5 @@
 
 ## Rule 
 
-<div align="center"> <img src="pics/3c1.jpg" width="600px"> </div><br>
-<div align="center"> <img src="pics/3c2.jpg" width="600px"> </div><br>
+<div align="center"> <img src="pics/3c1.jpg" width="400px"> </div><br>
+<div align="center"> <img src="pics/3c2.jpg" width="400px"> </div><br>

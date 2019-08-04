@@ -15,3 +15,11 @@
 
 <div align="center"> <img src="pics/3c1.jpg" width="400px"> </div><br>
 <div align="center"> <img src="pics/3c2.jpg" width="400px"> </div><br>
+
+## Solution 
+
+<div align="center"> <img src="pics/g1.jpg" width="400px"> </div><br>
+<div align="center"> <img src="pics/g2.jpg" width="400px"> </div><br>
+<div align="center"> <img src="pics/g3.jpg" width="400px"> </div><br>
+<div align="center"> <img src="pics/g4.jpg" width="400px"> </div><br>
+<div align="center"> <img src="pics/g5.jpg" width="400px"> </div><br>
